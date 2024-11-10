@@ -1,0 +1,161 @@
+%
+%  Vorlage/Template fuer #EBT
+%
+%  Created by Prof. Dr. Detlef Kreuz on 2010-08-14.
+%  Copyright (c) 2010 . All rights reserved.
+%
+\documentclass[12pt,toc=bib,toc=listof]{scrreprt}
+\usepackage[ngerman]{babel} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{fixltx2e}
+\usepackage{acronym}
+\usepackage[automake,toc]{glossaries}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{makecell}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[]{capt-of}
+\usepackage[style=apa,backend=biber,natbib]{biblatex}
+\usepackage{ifpdf}
+\usepackage{subcaption}
+\ifpdf
+\usepackage[pdftex]{graphicx}
+\else
+\usepackage{graphicx}
+\fi
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{pgfgantt}
+\usepackage{xcolor}
+\addbibresource{references.bib}
+
+\makeglossaries
+
+\include{chapters/lists/glossar.tex}
+
+\newcommand{\keywords}[1]{\par\noindent{\small{\textbf{Keywords}}--- #1}}
+
+\hypersetup{
+  ,colorlinks=true
+  ,linkcolor=blue
+  ,citecolor=blue
+  ,filecolor=blue
+  ,urlcolor=blue
+}
+
+  \lstnewenvironment{rcode}[1][]{
+  \lstset{
+    language=R,
+    basicstyle=\small\ttfamily,
+    columns=fullflexible,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{gray},
+    stringstyle=\color{green!60!black},
+    showstringspaces=false,
+    breaklines=true,
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+    morekeywords={},
+    frame=single,
+    frameround=tttt,
+    backgroundcolor=\color{gray!10},
+    framesep=5pt,
+    xleftmargin=5pt,
+    xrightmargin=5pt,
+    tabsize=2,
+    aboveskip=15pt,   % Abstand oberhalb des Codeblocks
+    belowskip=15pt,   % Abstand unterhalb des Codeblocks
+    rulecolor=\color{gray!8},  % Rahmenlinienfarbe
+    frame=tb,  % Rahmenlinien an allen vier Seiten
+    backgroundcolor=\color{gray!10},  % Hintergrundfarbe des Codeblocks
+    fillcolor=\color{gray!10},  % Hintergrundfarbe des Codeblocks für Zeilenumbrüche
+  }
+}{}
+  \lstnewenvironment{routput}[1][]{
+  \lstset{
+    language=R,
+    basicstyle=\small\ttfamily,
+    columns=fixed,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{gray},
+    stringstyle=\color{green!60!black},
+    showstringspaces=false,
+    breaklines=true,
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+    morekeywords={},
+    frame=single,
+    frameround=tttt,
+    backgroundcolor=\color{gray!10},
+    framesep=5pt,
+    xleftmargin=5pt,
+    xrightmargin=5pt,
+    tabsize=7,   % Tabulator mit 7 Leerzeichen
+    #1,
+    aboveskip=15pt,
+    belowskip=15pt,
+  }
+}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% % (fold)
+\newcommand{\ebttopic}{Lorem Ipsum}
+\newcommand{\ebtstudentname}{Name: Robert Kessler}
+\newcommand{\ebtstudentid}{Matrikelnummer: 205015}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+\urldef{\ebtstudentmail}{\url}{E-Mail}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% % (end)
+
+\pagestyle{scrheadings}
+
+\clearscrheadfoot
+%\ihead{\ebttopic}
+\ohead{\pagemark}
+\renewcommand*{\chapterpagestyle}{scrheadings}
+\renewcommand*{\chapterheadstartvskip}{}
+
+\titlehead{\flushright
+% \includegraphics[scale=0.1]{images/HHNLogo.jpg}
+}
+\subject{Side \\ Title}
+\title{\ebttopic}
+\author{\ebtstudentname \\ \ebtstudentid}
+%% Datum nie auf einen festen Wert setzen
+\publishers{\flushleft Eingereicht bei: \\Referent: Test Prof\\Korreferent: Test Prof 2}
+
+%\pagestyle{headings}
+
+\begin{document}
+\interlinepenalty=5
+\pagenumbering{roman} 
+\selectlanguage{ngerman}
+\maketitle
+\input{abstract.tex}
+\tableofcontents
+
+\include{chapters/lists/abkuerzungsverzeichnis.tex}
+
+\printglossary[nonumberlist]
+
+\listoffigures
+\listoftables
+
+\onehalfspacing
+
+\newpage
+\pagenumbering{arabic}
+
+\include{chapters/einleitung/einleitung.tex}
+\include{chapters/hauptteil/hauptteil.tex}
+\include{chapters/schluss/schluss.tex}
+
+\appendix
+\include{chapters/lists/literaturverzeichnis.tex}
+\include{chapters/lists/Eidesstattliche_Erklaerung.tex}
+
+\end{document}
+
